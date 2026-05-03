@@ -1,0 +1,58 @@
+services:
+  
+  #-----------------
+  # POSTGRESQL
+  #-----------------
+  talent-power-db:
+    image: postgres:15.3-alpine
+    container_name: talent-power-db
+    restart: always
+    environment:
+      POSTGRES_USER: talentpower
+      POSTGRES_PASSWORD: talentpower
+      POSTGRES_DB: talent_power
+    ports:
+      - "5432:5432"
+    volumes:
+      - talent_power_data:/var/lib/postgresql/data
+    
+
+  #-----------------
+  # PGADMIN
+  #-----------------
+  talent-power-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: talent-power-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - talent-power-db
+  
+  #-----------------
+  # SMTP4DEV  
+  #-----------------
+  talent-power-smtp4dev:
+    container_name: talent-power-smtp4dev
+    image: rnwood/smtp4dev:latest
+    restart: always
+    ports:
+      # Change the number before : to the port the web interface should be accessible on
+      - "3000:80"
+        # Change the number before : to the port the SMTP server should be accessible on
+      - "2525:25"
+        # Change the number before : to the port the IMAP server should be accessible on
+        #- '143:143'
+    # volumes:
+    # This is where smtp4dev stores the database..
+    #- smtp4dev-data:/smtp4dev
+    # environment:
+
+# -------------------
+# Named volumes
+# -------------------
+volumes:
+  talent_power_data:

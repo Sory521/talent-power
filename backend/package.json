@@ -1,0 +1,56 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for TALENT-POWER project with express + node + postgres + prisma",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "format": "prettier --write",
+    "format:check": "prettier --check",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --quiet --fix",
+    "prisma:generate": "prisma generate --schema ./prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema ./prisma/schema.prisma",
+    "prisma:reset": "prisma migrate reset --schema ./prisma/schema.prisma",
+    "prisma:deploy": "prisma deploy --schema ./prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema ./prisma/schema.prisma",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sory521/talent-power.git"
+  },
+  "author": "sory",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sory521/talent-power/issues"
+  },
+  "homepage": "https://github.com/Sory521/talent-power#readme",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^6.19.2",
+    "@types/express": "^5.0.6",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "validator": "^13.15.35",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/pg": "^8.20.0",
+    "prettier": "^3.8.3",
+    "prisma": "^6.19.2",
+    "prisma-import": "^1.0.5",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}
